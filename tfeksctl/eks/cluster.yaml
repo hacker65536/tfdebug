@@ -1,0 +1,26 @@
+vpc:
+  subnets:
+    private:
+      ${privateaz0}: { id: "${privatesub0}" }
+      ${privateaz1}: { id: "${privatesub1}" }
+    public:
+      ${publicaz0}: { id: "${publicsub0}" }
+      ${publicaz1}: { id: "${publicsub1}" }
+
+nodeGroups:
+- name: ${ngname1}
+  instanceType: t3.small
+  desiredCapacity: 1
+  iam:
+    attachPolicyARNs:
+      - arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
+      - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
+      - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+- name: ${ngname2}
+  instanceType: t3.small
+  desiredCapacity: 1
+  iam:
+    attachPolicyARNs:
+      - arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
+      - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
+      - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
